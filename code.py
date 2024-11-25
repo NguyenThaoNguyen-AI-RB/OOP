@@ -209,6 +209,7 @@ class StoreApp:
 
     def customer_info(self):
         self.clear_screen()
+        tk.Label(self.root, text="Chào mừng", font=("Arial", 16)).pack(pady=10)
         tk.Label(self.root, text="Thông tin cá nhân", font=("Arial", 16)).pack(pady=10)
         tk.Label(self.root, text="Tên:").pack()
         tk.Label(self.root, text=self.customer.username).pack()
