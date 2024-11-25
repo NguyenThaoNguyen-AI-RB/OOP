@@ -201,42 +201,32 @@ class StoreApp:
     # Giao diện chính của Customer
     def customer_dashboard(self):
         self.clear_screen()
-        tk.Label(self.root, text=f"Chào mừng {self.customer.name}", font=("Arial", 16)).pack(pady=10)
+        tk.Label(self.root, text="Khách hàng", font=("Arial", 16)).pack(pady=10)
+        tk.Button(self.root, text="Thông tin cá nhân", command=self.customer_info).pack(pady=5)
+        tk.Button(self.root, text="Đặt hàng", command=self.place_order).pack(pady=5)
+        tk.Button(self.root, text="Đăng xuất", command=self.create_login_screen).pack(pady=5)
 
-        # Hiển thị thông tin cá nhân
-        tk.Label(self.root, text="Thông tin cá nhân:", font=("Arial", 14)).pack(pady=5)
-
-        # Tên
-        tk.Label(self.root, text=f"Tên: {self.customer.name}").pack()
-
-        # Số điện thoại
+    def customer_info(self):
+        self.clear_screen()
+        tk.Label(self.root, text="Thông tin cá nhân", font=("Arial", 16)).pack(pady=10)
+        tk.Label(self.root, text="Tên:").pack()
+        tk.Label(self.root, text=self.customer.username).pack()
         tk.Label(self.root, text="Số điện thoại:").pack()
         self.phone_entry = tk.Entry(self.root)
-        self.phone_entry.insert(0, self.customer.phone)  
+        self.phone_entry.insert(0, self.customer.phone)
         self.phone_entry.pack()
-
-        # Email
         tk.Label(self.root, text="Email:").pack()
         self.email_entry = tk.Entry(self.root)
-        self.email_entry.insert(0, self.customer.email)  
+        self.email_entry.insert(0, self.customer.email)
         self.email_entry.pack()
-
-        # Địa chỉ
         tk.Label(self.root, text="Địa chỉ:").pack()
         self.address_entry = tk.Entry(self.root)
-        self.address_entry.insert(0, self.customer.address)  
+        self.address_entry.insert(0, self.customer.address)
         self.address_entry.pack()
-
-        # Nút cập nhật thông tin
-        self.update_info_button = tk.Button(self.root, text="Cập nhật thông tin", command=self.update_customer_info)
-        self.update_info_button.pack(pady=5)
-
-        # Nút quay lại
-        self.back_button = tk.Button(self.root, text="Quay lại", command=self.show_previous_screen)
-        self.back_button.pack(pady=5)
+        tk.Button(self.root, text="Lưu", command=self.update_customer_info).pack(pady=5)
+        tk.Button(self.root, text="Quay lại", command=self.customer_dashboard).pack(pady=5)
 
     def update_customer_info(self):
-    # Lưu thông tin 
         self.customer.phone = self.phone_entry.get()
         self.customer.email = self.email_entry.get()
         self.customer.address = self.address_entry.get()
