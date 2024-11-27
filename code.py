@@ -29,6 +29,11 @@ class Users:
             pass
         return users
 
+class Product:
+    def __init__(self, product_name, price, quantity_in_stock):
+        self.product_name = product_name
+        self.price = price
+        self.quantity_in_stock = quantity_in_stock
 
 # Lớp Customer kế thừa từ Users
 class Customer(Users):
@@ -118,7 +123,7 @@ class StoreApp:
 
         # Tạo customer và manager giả lập
         self.customer = None
-        self.manager = Manager("Quản lý 1")
+        self.manager = Manager("Quản lý 1", "password123")
 
         # Quản lý tài khoản người dùng
         self.user_manager = UserManager()
@@ -321,7 +326,7 @@ class StoreApp:
     # Kiểm tra thông tin hợp lệ
         if username and password and role:
         # Thêm tài khoản mới vào danh sách tài khoản 
-            new_account = User(username, password, role)  
+            new_account = Users(username, password, role)  
             self.manager.add_account(new_account)  
             messagebox.showinfo("Thành công", "Tài khoản đã được thêm!")
             self.manage_accounts()
